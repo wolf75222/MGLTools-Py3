@@ -1,4 +1,4 @@
-# MGLTools 1.5.6 for Python 3 — AutoDockTools GUI, portable for Windows
+# MGLTools 1.5.6 for Python 3 — AutoDockTools GUI for Windows, Linux and macOS
 
 **AutoDockTools (ADT)**, the **Python Molecular Viewer (PMV)** and **Vision** from
 MGLTools 1.5.6, ported from Python 2.5 / Numeric / Togl to **Python 3 /
@@ -8,6 +8,14 @@ The Windows release is **portable**: no installation, no Python needed.
 Download, unzip, double-click `adt.exe`.
 A Linux x86_64 package is also available — see
 [Download and run (Linux)](#download-and-run-linux).
+On macOS, build from source — see [Build and run (macOS)](#build-and-run-macos).
+
+This is a fork of [Leishem/MGLTools-Py3](https://github.com/Leishem/MGLTools-Py3)
+that adds macOS support (Apple Silicon, Tk 9) and fixes *Write PDB* and
+*Run AutoGrid*. These changes are proposed upstream in
+[#1](https://github.com/Leishem/MGLTools-Py3/pull/1) and
+[#2](https://github.com/Leishem/MGLTools-Py3/pull/2). The Windows and Linux
+packages linked below are the upstream releases.
 
 > ### ⬇️ [Download for Windows (MGLTools-1.5.6-Py3-Win64-Portable.zip, ~110 MB)](https://github.com/Leishem/MGLTools-Py3/releases/latest/download/MGLTools-1.5.6-Py3-Win64-Portable.zip)
 >
@@ -127,7 +135,8 @@ Run `./adt-util` with no arguments to list all available scripts.
 ## Build and run (macOS)
 
 There is no macOS package yet; build from source. Tested on **macOS 27**
-(Apple Silicon) with Homebrew's Python 3.12 and **Tk 9.0**.
+(Apple Silicon) with Homebrew's Python 3.12 and **Tk 9.0**. Intel Macs are not
+tested.
 
 1. Install the Command Line Tools, Python 3.12 and its Tk 9 module:
 
@@ -139,7 +148,7 @@ There is no macOS package yet; build from source. Tested on **macOS 27**
 2. Build in a virtual environment:
 
    ```
-   git clone https://github.com/Leishem/MGLTools-Py3
+   git clone https://github.com/wolf75222/MGLTools-Py3
    cd MGLTools-Py3
    /opt/homebrew/bin/python3.12 -m venv .venv
    .venv/bin/pip install .
@@ -180,16 +189,17 @@ Please [open an issue](../../issues/new/choose) and include:
 
 - **a screenshot** of the problem (and of the Python shell window if an error
   appears there),
-- your Windows version and processor (*Settings → System → About*) and graphics card,
+- your operating system version, processor and graphics card,
 - the steps that led to the problem and, if possible, the input files.
 
 ## What was validated
 
 | Check | Result |
 |---|---|
-| `prepare_receptor4`, `prepare_ligand4`, `prepare_gpf4`, `prepare_dpf42` on the ADT tutorial (HIV protease hsg1 + indinavir) | **byte-identical** output to the original MGLTools 1.5.6, on Windows and Linux |
+| `prepare_receptor4`, `prepare_ligand4`, `prepare_gpf4`, `prepare_dpf42` on the ADT tutorial (HIV protease hsg1 + indinavir) | **byte-identical** output to the original MGLTools 1.5.6, on Windows, Linux and macOS |
 | Molecular surface vs the original MSMS | vertices within ~0.1 Å of MSMS's surface; area within ~3 % |
 | GUI | loads molecules; lines, sticks & balls, CPK, ribbons, molecular surfaces, selection and colouring render correctly |
+| AutoDock4 docking workflow in the GUI on macOS 27 (β-galactosidase + galactose) | ligand and receptor preparation, grid box, GPF/DPF output and result analysis work; best pose 0.73 Å RMSD from the crystal structure |
 
 | CPK | Ribbon |
 |---|---|
