@@ -19,10 +19,10 @@ body:
     validations:
       required: true
   - type: input
-    id: windows
+    id: os
     attributes:
-      label: Windows version and processor
-      description: From Settings → System → About (e.g. "Windows 11 23H2, Intel Core i7-14700HX")
+      label: Operating system and processor
+      description: e.g. "Windows 11 23H2, Intel Core i7-14700HX" or "macOS 27, Apple M3"
     validations:
       required: true
   - type: input
@@ -34,8 +34,8 @@ body:
     id: version
     attributes:
       label: Package
-      description: Which download did you use?
-      value: MGLTools-1.5.6-Py3-Win64-Portable.zip
+      description: Which download did you use, or did you build from source?
+      placeholder: e.g. MGLTools-1.5.6-Py3-Win64-Portable.zip, or built from source on macOS
   - type: textarea
     id: steps
     attributes:
